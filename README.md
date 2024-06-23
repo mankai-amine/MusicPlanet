@@ -13,3 +13,8 @@ Using our app you can:
 ## Development
 
 * Server API Documentation: [API Documentation](https://documenter.getpostman.com/view/3159462/2sA3XWce9j)
+
+
+## References
+
+* [dotenv-java](https://github.com/cdimascio/dotenv-java) - Use dotenv in project management environment variables. Put a .env file in the root of the project and add the environment variables to it.
