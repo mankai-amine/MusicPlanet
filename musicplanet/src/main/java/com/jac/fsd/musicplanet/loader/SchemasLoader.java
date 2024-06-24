@@ -29,9 +29,10 @@ public class SchemasLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Resource sql = new ClassPathResource("data/schema.sql");
         Stream<String> lines = Files.lines(Paths.get(sql.getURI()));
-        List<String> sqlStatements = lines.collect(Collectors.toList());
+        List<String> sqlStatements = lines.toList();
         lines.close();
 
+        log.info("SchemasLoader Executing SQL statements from schema.sql");
         for(String sqlStatement : sqlStatements) {
             if(sqlStatement.isBlank()) {
                 continue;
