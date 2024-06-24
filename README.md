@@ -14,6 +14,25 @@ Using our app you can:
 
 * Server API Documentation: [API Documentation](https://documenter.getpostman.com/view/3159462/2sA3XWce9j)
 
+### Configure Environment Variables
+
+Create a `.env` file in the root of the project and add the following environment variables:
+
+```properties
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_DB=musicplanet
+MYSQL_USER=musicplanet
+MYSQL_PASSWORD=you_db_password
+PORT=8000
+```
+The variables are used to configure `application.properties` file.
+
+### schema.sql
+
+The `schema.sql` file is used to create the database schema. The file is located in the `src/main/data` directory.
+
+Each line in the file is a SQL statement, and the file is executed when the application starts. **Don't** split the SQL statements into multiple lines.
 
 ## References
 
