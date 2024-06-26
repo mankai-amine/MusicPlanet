@@ -7,6 +7,23 @@
 <body>
     <div>
         <h1 th:text="${customvar}">Default Message</h1>
+        <table>
+            <thead>
+            <tr>
+                <th> Album Name </th>
+                <th> Year </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${albumList.empty}">
+                <td colspan="2"> No Albums Available </td>
+            </tr>
+            <tr th:each="album : ${albumList}">
+                <td><span th:text="${album.albumName}"> Name </span></td>
+                <td><span th:text="${album.yearOfRelease}"> Year </span></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
