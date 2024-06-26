@@ -17,7 +17,7 @@ public class SearchController {
     @Autowired
     private SearchService service;
 
-    @GetMapping("/discography/{artistName}")
+    @GetMapping("/api/discography/{artistName}")
     public List<Album> getDiscography(@PathVariable String artistName){
         return service.getDiscography(artistName);
     }
