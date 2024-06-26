@@ -20,8 +20,9 @@ public class AccountFavesController {
                 new Album("The Memory of Trees", 1995)
         ));
         model.addAttribute("albumList", hardCoded);
-        model.addAttribute("customvar", "testMessage");
+        model.addAttribute("customVar", "testMessage");
         return "favorites";
     }
+
 
 }

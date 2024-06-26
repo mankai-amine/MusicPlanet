@@ -10,4 +10,14 @@ public class HomeController {
     public String index(){
         return "login";
     }
+
+    @GetMapping("/home")
+    public String home(){
+        return "home";
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
 }
