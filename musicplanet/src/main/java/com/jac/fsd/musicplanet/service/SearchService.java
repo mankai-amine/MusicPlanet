@@ -15,7 +15,6 @@ public class SearchService {
     @Autowired
     private AudiodbAdapter adapter;
 
-
     public List<Album> getDiscography(String artistName) {
         var discographyDTO = adapter.getDiscography(artistName);
         // convert the list of album DTOs into a stream and map each albumDTO to an Album object

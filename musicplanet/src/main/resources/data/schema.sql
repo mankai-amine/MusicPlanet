@@ -6,3 +6,10 @@ CREATE TABLE IF NOT EXISTS authorities (
     FOREIGN KEY (username)
         REFERENCES users (username)
 );
+
+CREATE TABLE IF NOT EXISTS `tracks` (
+  `track_id` INT NOT NULL,
+  `track_name` VARCHAR(45) NULL,
+  `album_id` INT NULL,
+  `artist_id` INT NULL,
+  PRIMARY KEY (`track_id`));
