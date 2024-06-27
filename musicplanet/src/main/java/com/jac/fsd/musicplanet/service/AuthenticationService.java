@@ -3,9 +3,12 @@ package com.jac.fsd.musicplanet.service;
 import com.jac.fsd.musicplanet.DTO.LoginUserDto;
 import com.jac.fsd.musicplanet.DTO.RegisterUserDto;
 import com.jac.fsd.musicplanet.entity.User;
+import com.jac.fsd.musicplanet.exception.AuthException;
 import com.jac.fsd.musicplanet.repositoriy.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,11 +34,15 @@ public class AuthenticationService {
     }
 
     public User authenticate(LoginUserDto loginUserDto) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginUserDto.getUsername(), loginUserDto.getPassword())
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginUserDto.getUsername(), loginUserDto.getPassword())
+            );
+        }catch (BadCredentialsException e){
+            throw new AuthException(HttpStatus.UNAUTHORIZED, "Invalid username or password");
+        }
         return userRepository.findByUsername(loginUserDto.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found: " + loginUserDto.getUsername()));
+                .orElseThrow(() -> new AuthException(HttpStatus.UNAUTHORIZED, "User not found: " + loginUserDto.getUsername()));
     }
 
 }
