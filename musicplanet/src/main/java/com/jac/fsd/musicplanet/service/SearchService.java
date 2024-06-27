@@ -2,6 +2,7 @@ package com.jac.fsd.musicplanet.service;
 
 import com.jac.fsd.musicplanet.adapter.AudiodbAdapter;
 import com.jac.fsd.musicplanet.model.Album;
+import com.jac.fsd.musicplanet.model.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,30 @@ public class SearchService {
                         .build())
                 .collect(Collectors.toList());
     }
+
+    public List<Track> getTracksByAlbumId(Long albumId) {
+        var trackListDTO = adapter.getTracksByAlbumId(albumId);
+
+        return trackListDTO.getTrackDTOs().stream()
+                .map(trackDTO -> Track.builder()
+                    .trackId(trackDTO.getTrackId())
+                    .trackName(trackDTO.getTrackName())
+                    .albumId(trackDTO.getAlbumId())
+                    .artistId(trackDTO.getArtistId())
+                    .build())
+                .collect(Collectors.toList());
+    }
+
+    public Track getTrackByTrackId(Long trackID) {
+        // audioDb returns a single array element that we must unpack
+        var trackDTO = adapter.getTrackByTrackId(trackID).getTrackDTOs().get(0);
+
+        return Track.builder()
+                .trackId(trackDTO.getTrackId())
+                .trackName(trackDTO.getTrackName())
+                .albumId(trackDTO.getAlbumId())
+                .artistId(trackDTO.getArtistId())
+                .build();
+    }
+
 }
