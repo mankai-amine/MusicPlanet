@@ -1,10 +1,9 @@
 package com.jac.fsd.musicplanet.controller;
 
-//import com.jac.fsd.musicplanet.DTO.ArtistResponseDTO;
 import com.jac.fsd.musicplanet.model.Album;
-//import com.jac.fsd.musicplanet.service.ArtistService;
 import com.jac.fsd.musicplanet.model.Artist;
 import com.jac.fsd.musicplanet.model.Biography;
+import com.jac.fsd.musicplanet.model.Track;
 import com.jac.fsd.musicplanet.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,4 +39,15 @@ public class SearchController {
         int artistId = this.getArtistIdByName(artistName).getArtistId();
         return service.getBiography(artistId);
     }
+
+    @GetMapping("/api/tracks/{albumId}")
+    public List<Track> getTracksByAlbumId(@PathVariable Long albumId) {
+        return service.getTracksByAlbumId(albumId);
+    }
+
+    @GetMapping("/api/track/{trackId}")
+    public Track getTrackByTrackId(@PathVariable Long trackId) {
+        return service.getTrackByTrackId(trackId);
+    }
+
 }
