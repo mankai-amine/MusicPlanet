@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 public class AccountFavesController {
 
+    // TODO This is hardcoded and needs to be elaborated on, just a proof of concept
     @GetMapping("/user/favorites")
     public String favorites(Model model) {
         List<Album> hardCoded = new ArrayList<>(Arrays.asList(
@@ -23,6 +24,4 @@ public class AccountFavesController {
         model.addAttribute("customVar", "testMessage");
         return "favorites";
     }
-
-
 }
