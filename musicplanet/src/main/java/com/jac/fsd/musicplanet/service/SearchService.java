@@ -17,8 +17,7 @@ public class SearchService {
 
     public List<Album> getDiscography(String artistName) {
         var discographyDTO = adapter.getDiscography(artistName);
-        // convert the list of album DTOs into a stream and map each albumDTO to an Album object
-        // collect the mapped Album objects into a list
+        // map each albumDTO to an Album object and collect the mapped Album objects into a list
         return discographyDTO.getAlbums().stream()
                 .map(albumDTO -> Album.builder()
                         .albumName(albumDTO.getAlbumName())

@@ -1,5 +1,6 @@
 package com.jac.fsd.musicplanet.adapter;
 
+import com.jac.fsd.musicplanet.DTO.ArtistDetailsDTO;
 import com.jac.fsd.musicplanet.DTO.DiscographyDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -30,4 +31,19 @@ public class AudiodbAdapter {
         DiscographyDTO discographyDTO = restTemplate.getForObject(route, DiscographyDTO.class, parameters);
         return discographyDTO;
     }
+
+    public ArtistDetailsDTO getBiography(int artistId) {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String route = apiUrl.concat("{key}/artist.php?i={id}");
+
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("key", apiKey);
+        parameters.put("id", String.valueOf(artistId));
+
+        ArtistDetailsDTO artistDetailsDTO = restTemplate.getForObject(route, ArtistDetailsDTO.class, parameters);
+        return artistDetailsDTO;
+    }
+
 }
