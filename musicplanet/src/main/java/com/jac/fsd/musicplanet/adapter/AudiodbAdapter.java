@@ -1,5 +1,6 @@
 package com.jac.fsd.musicplanet.adapter;
 
+import com.jac.fsd.musicplanet.DTO.ArtistDetailsDTO;
 import com.jac.fsd.musicplanet.DTO.DiscographyDTO;
 import com.jac.fsd.musicplanet.DTO.TrackDTO;
 import com.jac.fsd.musicplanet.DTO.TrackListDTO;
@@ -35,6 +36,21 @@ public class AudiodbAdapter {
         DiscographyDTO discographyDTO = restTemplate.getForObject(route, DiscographyDTO.class, parameters);
         return discographyDTO;
     }
+
+    public ArtistDetailsDTO getBiography(int artistId) {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String route = apiUrl.concat("{key}/artist.php?i={id}");
+
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("key", apiKey);
+        parameters.put("id", String.valueOf(artistId));
+
+        ArtistDetailsDTO artistDetailsDTO = restTemplate.getForObject(route, ArtistDetailsDTO.class, parameters);
+        return artistDetailsDTO;
+    }
+
 
     public TrackListDTO getTracksByAlbumId(Long albumId) {
         RestTemplate restTemplate = new RestTemplate();

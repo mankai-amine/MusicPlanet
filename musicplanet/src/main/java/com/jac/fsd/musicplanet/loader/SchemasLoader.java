@@ -43,5 +43,33 @@ public class SchemasLoader implements CommandLineRunner {
             log.info("Executing SQL statement: \n" + sqlStatement);
             jdbcTemplate.execute(sqlStatement);
         }
+
+        // load data from artistsData.sql
+        loadData();
     }
+
+
+    private void loadData() throws Exception {
+        Long count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM artists", Long.class);
+        if (count == 0) {
+            Resource dataResource = new ClassPathResource("data/artistsData.sql");
+            Stream<String> dataLines = Files.lines(Paths.get(dataResource.getURI()));
+            String dataSql = dataLines.collect(Collectors.joining());
+            dataLines.close();
+
+            String[] dataStatements = dataSql.split(";");
+
+            log.info("Executing SQL statements from data.sql");
+            for (String statement : dataStatements) {
+                statement = statement.trim();
+                if (!statement.isBlank()) {
+                    jdbcTemplate.execute(statement);
+                }
+            }
+            log.info("Data loading completed.");
+        } else {
+            log.info("Data already exists in the artists table. Skipping data.sql execution.");
+        }
+    }
+
 }
