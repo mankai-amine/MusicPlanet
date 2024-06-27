@@ -23,7 +23,7 @@ public class SearchService {
     private TrackRepository trackRepository;
 
     @Autowired
-    private ArtistRepository repository;
+    private ArtistRepository artistRepository;
 
     public List<Album> getDiscography(String artistName) {
         var discographyDTO = adapter.getDiscography(artistName);
@@ -76,7 +76,7 @@ public class SearchService {
     }
 
     public Artist getArtistId(String theArtistName) {
-        var theArtistId = repository.getArtistId(theArtistName);
+        var theArtistId = artistRepository.getArtistId(theArtistName);
         Artist artistObj =  Artist.builder()
                 .artistName(theArtistName)
                 .artistId(theArtistId)

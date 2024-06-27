@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS authorities (
 
 CREATE TABLE IF NOT EXISTS artists ( artist_name VARCHAR(100) NOT NULL PRIMARY KEY, artist_id INT NOT NULL);
 
-
 CREATE TABLE IF NOT EXISTS `tracks` (
   `track_id` INT NOT NULL,
   `track_name` VARCHAR(45) NULL,
