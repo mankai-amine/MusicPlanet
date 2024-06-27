@@ -3,6 +3,7 @@ package com.jac.fsd.musicplanet.service;
 import com.jac.fsd.musicplanet.adapter.AudiodbAdapter;
 import com.jac.fsd.musicplanet.model.Album;
 import com.jac.fsd.musicplanet.model.Track;
+import com.jac.fsd.musicplanet.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class SearchService {
 
     @Autowired
     private AudiodbAdapter adapter;
+
+    @Autowired
+    private TrackRepository trackRepository;
 
     public List<Album> getDiscography(String artistName) {
         var discographyDTO = adapter.getDiscography(artistName);
@@ -28,28 +32,42 @@ public class SearchService {
     }
 
     public List<Track> getTracksByAlbumId(Long albumId) {
-        var trackListDTO = adapter.getTracksByAlbumId(albumId);
+        List<Track> tracks = trackRepository.getTracksByAlbumId(albumId);
 
-        return trackListDTO.getTrackDTOs().stream()
-                .map(trackDTO -> Track.builder()
+        // check for empty array return
+        if (tracks == null || tracks.isEmpty()) {
+            var trackListDTO = adapter.getTracksByAlbumId(albumId);
+
+            return trackListDTO.getTrackDTOs().stream()
+                    .map(trackDTO -> Track.builder()
+                            .trackId(trackDTO.getTrackId())
+                            .trackName(trackDTO.getTrackName())
+                            .albumId(trackDTO.getAlbumId())
+                            .artistId(trackDTO.getArtistId())
+                            .build())
+                    .collect(Collectors.toList());
+        } else {
+            return tracks;
+        }
+    }
+
+
+    public Track getTrackByTrackId(Long trackID) {
+        Track track = trackRepository.getTrackById(trackID);
+
+        if (track != null) {
+            return track;
+        } else {
+            // audioDb returns a single array element that we must unpack
+            var trackDTO = adapter.getTrackByTrackId(trackID).getTrackDTOs().get(0);
+
+            return Track.builder()
                     .trackId(trackDTO.getTrackId())
                     .trackName(trackDTO.getTrackName())
                     .albumId(trackDTO.getAlbumId())
                     .artistId(trackDTO.getArtistId())
-                    .build())
-                .collect(Collectors.toList());
-    }
-
-    public Track getTrackByTrackId(Long trackID) {
-        // audioDb returns a single array element that we must unpack
-        var trackDTO = adapter.getTrackByTrackId(trackID).getTrackDTOs().get(0);
-
-        return Track.builder()
-                .trackId(trackDTO.getTrackId())
-                .trackName(trackDTO.getTrackName())
-                .albumId(trackDTO.getAlbumId())
-                .artistId(trackDTO.getArtistId())
-                .build();
+                    .build();
+        }
     }
 
 }

@@ -19,10 +19,6 @@ public class SearchController {
     @Autowired
     private SearchService service;
 
-    // TODO REMOVE TEMP CODE
-    @Autowired
-    private TrackRepository trackRepository;
-
     @GetMapping("/api/discography/{artistName}")
     public List<Album> getDiscography(@PathVariable String artistName){
         return service.getDiscography(artistName);
@@ -33,15 +29,9 @@ public class SearchController {
         return service.getTracksByAlbumId(albumId);
     }
 
-    // TODO TEMP CODE
     @GetMapping("/api/track/{trackId}")
     public Track getTrackByTrackId(@PathVariable Long trackId) {
         return service.getTrackByTrackId(trackId);
     }
 
-    // TODO remove temp code
-    @GetMapping("/api/test/{trackId}")
-    public Track getTrackByTrackIdDB(@PathVariable Long trackId) {
-        return trackRepository.getTrackById(trackId);
-    }
 }

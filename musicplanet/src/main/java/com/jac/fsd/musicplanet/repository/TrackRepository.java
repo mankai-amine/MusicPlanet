@@ -15,8 +15,11 @@ public class TrackRepository {
 
     public Track getTrackById(Long trackId) {
         String sql = "SELECT * FROM tracks WHERE track_id=?";
-
-        return jdbcTemplate.queryForObject(sql, new TrackRowMapper(), trackId);
+        try {
+            return jdbcTemplate.queryForObject(sql, new TrackRowMapper(), trackId);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public Track getTrackByName(String trackName) {
@@ -28,14 +31,11 @@ public class TrackRepository {
     public List<Track> getTracksByAlbumId(Long albumId) {
         String sql = "SELECT * FROM tracks WHERE album_id=? LIMIT 10";
 
-        return jdbcTemplate.query(sql, new TrackRowMapper(), albumId);
-    }
-
-    public Long saveTrack(Track track) {
-        String sql = "INSERT INTO tracks(track_id, track_name, album_id, artist_id) VALUES(?, ?, ?, ?";
-        jdbcTemplate.update(sql, track.getTrackId(), track.getTrackName(), track.getAlbumId(), track.getArtistId());
-
-        return track.getTrackId();
+        try {
+            return jdbcTemplate.query(sql, new TrackRowMapper(), albumId);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }
