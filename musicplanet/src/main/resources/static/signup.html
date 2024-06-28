@@ -5,16 +5,14 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/login.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
 </head>
 
 <body>
-    <div class="container  mt-4">
-        <h1>Login</h1>
-        <form onsubmit="login(event)">
+    <div class="container mt-4">
+        <h1 class="text-center">Signup</h1>
+        <form onsubmit="signup(event)">
             <div class="row mb-3">
                 <label for="username" class="col-sm-2 col-form-label">Username:</label>
                 <div class="col-sm-10">
@@ -28,7 +26,7 @@
                 </div>
             </div>
             <div>
-                <button class="btn btn-primary" type="submit">Login</button>
+                <button class="btn btn-primary" type="submit">Signup</button>
             </div>
             <div id="error_msg"></div>
         </form>
@@ -37,5 +35,5 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="/js/config.js"></script>
-    <script src="/js/login.js"></script>
+    <script src="/js/signup.js"></script>
 </body>
