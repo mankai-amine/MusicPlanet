@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Favorites</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+</head>
+<body>
+    <div>
+        <h1 th:text="${customVar}">Default Message</h1>
+        <table>
+            <thead>
+            <tr>
+                <th> Album Name </th>
+                <th> Year </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${albumList.empty}">
+                <td colspan="2"> No Albums Available </td>
+            </tr>
+            <tr th:each="album : ${albumList}">
+                <td><span th:text="${album.albumName}"> Name </span></td>
+                <td><span th:text="${album.yearOfRelease}"> Year </span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
