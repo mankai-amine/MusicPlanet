@@ -41,6 +41,8 @@ const login = (event) => {
     })
     .catch((error) => {
       console.log("error", error);
+      document.getElementById("error_msg").innerHTML =
+        "Invalid username or password";
     });
 };
 
