@@ -19,7 +19,7 @@ const login = (event) => {
     redirect: "manual",
   };
 
-  fetch("/auth/login", requestOptions)
+  fetch("http://localhost:8000/auth/login", requestOptions)
     .then((response) => {
       if (response.status === 200) {
         return response.json();

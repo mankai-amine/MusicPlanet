@@ -21,7 +21,7 @@ window.onload = () => {
     redirect: "follow",
   };
 
-  fetch("/user/me", requestOptions)
+  fetch("http://localhost:8000/user/me", requestOptions)
     .then((response) => response.json())
     .then((result) => {
       const username = result.username;
