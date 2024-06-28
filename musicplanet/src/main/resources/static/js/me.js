@@ -1,5 +1,3 @@
-import { host } from "./config.js";
-
 function getCookie(name) {
   let cookieArr = document.cookie.split(";");
   for (let i = 0; i < cookieArr.length; i++) {

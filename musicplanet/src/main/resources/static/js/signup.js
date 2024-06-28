@@ -4,15 +4,22 @@ const signup = (event) => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  var api_result = null;
-
   call_singup(username, password).then((result) => {
-    api_result = result;
+    if (result === null) {
+      document.getElementById("error_msg").innerHTML =
+        "Username already exists";
+    } else {
+      call_login(username, password).then((result) => {
+        const token = result.token;
+        // save token to cookie
+        const currentDate = new Date();
+        // expires in 30 days
+        const expiresData =
+          new Date(currentDate).getTime() + 30 * 24 * 60 * 60 * 1000;
+        const expires = expiresData.toLocaleString();
+        document.cookie = `token=${token}; expires=${expires}; path=/`;
+        window.location.replace("/me.html");
+      });
+    }
   });
-
-  if (api_result === null) {
-    document.getElementById("error_msg").innerHTML = "Username already exists";
-  } else {
-    console.log(api_result);
-  }
 };
