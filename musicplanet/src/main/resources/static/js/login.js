@@ -1,3 +1,4 @@
+import { host } from "./config.js";
 const login = (event) => {
   event.preventDefault();
 
@@ -19,7 +20,7 @@ const login = (event) => {
     redirect: "manual",
   };
 
-  fetch("http://localhost:8000/auth/login", requestOptions)
+  fetch(`${host}/auth/login`, requestOptions)
     .then((response) => {
       if (response.status === 200) {
         return response.json();
