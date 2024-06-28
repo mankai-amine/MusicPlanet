@@ -1,4 +1,4 @@
-const host = "http://localhost:8080";
+const host = "http://localhost:8000";
 
 const call_singup = (username, password) => {
   const raw = JSON.stringify({

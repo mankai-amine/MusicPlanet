@@ -26,18 +26,16 @@ function searchDisc(event) {
     redirect: "follow",
   };
 
-  fetch(`http://localhost:8080/api/discography/${artistName}`, requestOptions)
+  fetch(`${host}/api/discography/${artistName}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
-
-      result.forEach(album => {
-          // Create a new div element for each album
-          const albumDiv = document.createElement("div");
-           albumDiv.innerHTML = `Name: ${album.albumName}, Year: ${album.yearOfRelease}`;
+      result.forEach((album) => {
+        // Create a new div element for each album
+        const albumDiv = document.createElement("div");
+        albumDiv.innerHTML = `Name: ${album.albumName}, Year: ${album.yearOfRelease}`;
         // Append the album div to the albumListDiv
-            document.getElementById("appendHere").appendChild(albumDiv);
-            });
-
+        document.getElementById("appendHere").appendChild(albumDiv);
+      });
     })
     .catch((error) => console.log("error", error));
 }
@@ -59,16 +57,15 @@ function searchBio(event) {
     redirect: "follow",
   };
 
-  fetch(`http://localhost:8080/api/biography/${artistName}`, requestOptions)
+  fetch(`${host}/api/biography/${artistName}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
-
       let biography = result.biography;
-          
-          const bioDiv = document.createElement("div");
-           bioDiv.innerHTML = `Biography: ${biography}`;
-      
-            document.getElementById("appendHere").appendChild(bioDiv);
+
+      const bioDiv = document.createElement("div");
+      bioDiv.innerHTML = `Biography: ${biography}`;
+
+      document.getElementById("appendHere").appendChild(bioDiv);
     })
-      .catch((error) => console.log("error", error));
+    .catch((error) => console.log("error", error));
 }
