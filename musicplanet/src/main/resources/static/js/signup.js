@@ -18,7 +18,7 @@ const signup = (event) => {
           new Date(currentDate).getTime() + 30 * 24 * 60 * 60 * 1000;
         const expires = expiresData.toLocaleString();
         document.cookie = `token=${token}; expires=${expires}; path=/`;
-        window.location.replace("/me.html");
+        window.location.replace("/search.html");
       });
     }
   });
