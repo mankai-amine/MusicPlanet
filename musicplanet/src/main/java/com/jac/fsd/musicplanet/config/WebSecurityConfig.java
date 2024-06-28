@@ -31,7 +31,7 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         (requests)->requests
-                                .requestMatchers("/","/home", "/me.html","/register", "/login", "/css/**", "/js/**","/auth/**", "/user/**").permitAll()
+                                .requestMatchers("/","/home", "/search.html","/login.html", "/signup.html", "/css/**", "/js/**","/auth/**", "/user/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement((session)->session
@@ -41,7 +41,7 @@ public class WebSecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(
                         (login)->login
-                                .loginPage("/login")
+                                .loginPage("/login.html")
                                 .permitAll()
                                 .defaultSuccessUrl("/home", true)
                 )
