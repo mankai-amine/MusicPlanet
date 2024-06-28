@@ -1,6 +1,6 @@
 package com.jac.fsd.musicplanet.config;
 
-import com.jac.fsd.musicplanet.repositoriy.UserRepository;
+import com.jac.fsd.musicplanet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

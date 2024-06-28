@@ -1,4 +1,4 @@
-package com.jac.fsd.musicplanet.repositoriy;
+package com.jac.fsd.musicplanet.repository;
 
 import com.jac.fsd.musicplanet.entity.User;
 import org.springframework.data.repository.CrudRepository;

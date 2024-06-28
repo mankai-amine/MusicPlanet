@@ -4,7 +4,7 @@ import com.jac.fsd.musicplanet.DTO.LoginUserDto;
 import com.jac.fsd.musicplanet.DTO.RegisterUserDto;
 import com.jac.fsd.musicplanet.entity.User;
 import com.jac.fsd.musicplanet.exception.AuthException;
-import com.jac.fsd.musicplanet.repositoriy.UserRepository;
+import com.jac.fsd.musicplanet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
