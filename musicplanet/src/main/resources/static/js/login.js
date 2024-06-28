@@ -39,7 +39,9 @@ const login = (event) => {
       document.cookie = `token=${token}; expires=${expires}; path=/`;
       window.location.replace("/search.html");
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      console.log("error", error);
+    });
 };
 
 function sign_out(event) {
