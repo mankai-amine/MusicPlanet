@@ -1,4 +1,3 @@
-import { host } from "./config.js";
 const login = (event) => {
   event.preventDefault();
 
