@@ -25,6 +25,7 @@ const login = (event) => {
         return response.json();
       } else {
         error_element.innerHTML = "Invalid username or password";
+        error_element.style.display = "block";
       }
     })
     .then((result) => {
@@ -40,3 +41,13 @@ const login = (event) => {
     })
     .catch((error) => console.log("error", error));
 };
+
+function sign_out(event) {
+  event.preventDefault();
+
+  document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+  window.location.href = "home.html";
+}
+
+document.getElementById("sign_out").addEventListener("click", sign_out());
