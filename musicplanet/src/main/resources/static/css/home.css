@@ -37,7 +37,7 @@ nav li, a {
   text-decoration: none;
   font-size: 18px;
   padding: 5px;
-  color: black;
+  color: rgb(0, 0, 0);
 
 }
 
@@ -96,14 +96,17 @@ nav h1 {
 
 .content button{
   background-color: #007bff;
-  color: white;
   border: none;
   padding: 10px 20px;
-  font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
   outline: none;
   transition: background-color 0.3s ease;
+}
+
+.content button a{
+  color: whitesmoke;
+  font-size: 16px;
 }
 
 .content button:hover {
