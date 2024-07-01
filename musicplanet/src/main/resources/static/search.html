@@ -4,23 +4,26 @@
 <head>
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/home.css" />
-    <link rel="stylesheet" type="text/css" href="/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="/css/search.css" />
 </head>
 
 <body>
-    <h1>Search for Music</h1>
-
-    <form onsubmit="searchDisc(event)">
-        <input type="text" id="discInput" placeholder="Search for discography"><button>Search</button>
-    </form>
-    <form onsubmit="searchBio(event)">
-        <input type="text" id="bioInput" placeholder="Search for biography"><button>Search</button>
-    </form>
-    <div id="appendHere">
+    <div class="search-container">
+        <div class="forms">
+            <form onsubmit="searchDisc(event)">
+                <input type="text" id="discInput" placeholder="Search for discography">
+                <button>Search</button>
+            </form>
+            <form onsubmit="searchBio(event)">
+                <input type="text" id="bioInput" placeholder="Search for biography">
+                <button>Search</button>
+            </form>
+        </div>
+        <div id="appendHere">
+        </div>
     </div>
-    <!--Waves Container-->
 
+    <!--Waves Container-->
     <div class="wave-container">
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
