@@ -6,6 +6,8 @@ import com.jac.fsd.musicplanet.model.Biography;
 import com.jac.fsd.musicplanet.model.Track;
 import com.jac.fsd.musicplanet.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,23 +23,27 @@ public class SearchController {
     private SearchService service;
 
     @GetMapping("/api/discography/{artistName}")
-    public List<Album> getDiscography(@PathVariable String artistName){
-        return service.getDiscography(artistName);
+    public ResponseEntity<List<Album>> getDiscography(@PathVariable String artistName){
+        return new ResponseEntity<>(service.getDiscography(artistName), HttpStatus.OK);
     }
 
-
     @GetMapping("/api/artist/{artistName}")
-    public Artist getArtistIdByName(@PathVariable String artistName){
-        return service.getArtistId(artistName);
+    public ResponseEntity<Artist> getArtistIdByName(@PathVariable String artistName){
+        return new ResponseEntity<>(service.getArtistId(artistName), HttpStatus.OK) ;
     }
 
     // theaudiodb API allows the user to search for artist details (including biography) by entering the artist ID.
     // But the user can't guess which ID belongs to which artist
     // so when the user types the artist name, our method will get the artist ID first, and then it will use the ID to get the biography
     @GetMapping("/api/biography/{artistName}")
-    public Biography getBiography(@PathVariable String artistName){
-        int artistId = this.getArtistIdByName(artistName).getArtistId();
-        return service.getBiography(artistId);
+    public ResponseEntity<Biography> getBiography(@PathVariable String artistName){
+        ResponseEntity<Artist> artistResponseEntity = this.getArtistIdByName(artistName);
+        if (artistResponseEntity.getStatusCode() == HttpStatus.OK && artistResponseEntity.getBody() != null){
+            int artistId = artistResponseEntity.getBody().getArtistId();
+            return new ResponseEntity<>(service.getBiography(artistId), HttpStatus.OK) ;
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/api/tracks/{albumId}")

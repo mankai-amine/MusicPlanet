@@ -25,16 +25,6 @@ public class SearchService {
     @Autowired
     private ArtistRepository artistRepository;
 
-    public List<Album> getDiscography(String artistName) {
-        var discographyDTO = adapter.getDiscography(artistName);
-        // map each albumDTO to an Album object and collect the mapped Album objects into a list
-        return discographyDTO.getAlbums().stream()
-                .map(albumDTO -> Album.builder()
-                        .albumName(albumDTO.getAlbumName())
-                        .yearOfRelease(Integer.parseInt(albumDTO.getYearOfRelease()))
-                        .build())
-                .collect(Collectors.toList());
-    }
 
     public List<Track> getTracksByAlbumId(Long albumId) {
         List<Track> tracks = trackRepository.getTracksByAlbumId(albumId);
@@ -73,6 +63,17 @@ public class SearchService {
                     .artistId(trackDTO.getArtistId())
                     .build();
         }
+    }
+
+    public List<Album> getDiscography(String artistName) {
+        var discographyDTO = adapter.getDiscography(artistName);
+        // map each albumDTO to an Album object and collect the mapped Album objects into a list
+        return discographyDTO.getAlbums().stream()
+                .map(albumDTO -> Album.builder()
+                        .albumName(albumDTO.getAlbumName())
+                        .yearOfRelease(Integer.parseInt(albumDTO.getYearOfRelease()))
+                        .build())
+                .collect(Collectors.toList());
     }
 
     public Artist getArtistId(String theArtistName) {

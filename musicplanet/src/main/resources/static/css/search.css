@@ -1,0 +1,123 @@
+{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+}
+
+#appendHere{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:3em;
+    padding: 0 2em;
+}
+
+ .forms {
+     display:flex;
+     justify-content: space-around;
+     margin-top:2em;
+ }
+
+ a {
+     margin: 10px;
+     text-decoration: none;
+     color: black;
+ }
+
+ a:hover {
+     color: rgb(255, 255, 255);
+     transition: color 0.2s ease-in-out;
+ }
+
+ button {
+     margin: 10px;
+     padding: 10px 20px;
+     background-color: #007bff;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     outline: none;
+     transition: background-color 0.3s ease;
+ }
+
+ button:hover {
+     background-color: #0056b3;
+   }
+
+/* Waves */
+
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 15vh;
+  overflow: hidden;
+  line-height: 0;
+
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  min-height: 100px;
+  max-height: 150px;
+}
+
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+  fill: rgba(30, 60, 114, 0.7); /* Dark blue */
+}
+
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+  fill: rgba(42, 82, 152, 0.5); /* Medium blue */
+}
+
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+  fill: rgba(94, 156, 255, 0.3); /* Light blue */
+}
+
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+  fill: rgb(55, 132, 158); /* Light cyan */
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/* Shrinking for mobile */
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .content {
+    height: 30vh;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
