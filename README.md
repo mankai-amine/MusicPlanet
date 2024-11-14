@@ -1,7 +1,7 @@
 # MusicPlanet
 
-MusicPlanet is an application that will help connect you with new music, and also help you bond with your friends over similar tastes!
-Using our app you can:
+MusicPlanet is a web application built using the free TheAudioDB API.
+This app allows you to:
 - Find biographies about your artists
 - Find tracks based of the track name or album
 - Find albums based on album name or artist
