@@ -32,7 +32,7 @@ function searchDisc(event) {
       result.forEach((album) => {
         // Create a new div element for each album
         const albumDiv = document.createElement("div");
-        albumDiv.innerHTML = `Name: ${album.albumName}, Year: ${album.yearOfRelease}`;
+        albumDiv.innerHTML = `Name: ${album.albumName},     Year: ${album.yearOfRelease}`;
         // Append the album div to the albumListDiv
         document.getElementById("appendHere").appendChild(albumDiv);
       });
@@ -63,7 +63,7 @@ function searchBio(event) {
       let biography = result.biography;
 
       const bioDiv = document.createElement("div");
-      bioDiv.innerHTML = `Biography: ${biography}`;
+      bioDiv.innerHTML = `${biography}`;
 
       document.getElementById("appendHere").appendChild(bioDiv);
     })
